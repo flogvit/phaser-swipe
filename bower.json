@@ -1,0 +1,24 @@
+{
+  "name": "phaser-swipe",
+  "description": "A swipe component for Phaser.io",
+  "main": "swipe.js",
+  "authors": [
+    "Vegard.Hanssen@cellarlabs.com"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "Phaser",
+    "swipe"
+  ],
+  "homepage": "https://github.com/flogvit/phaser-swipe",
+  "moduleType": [
+    "node"
+  ],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

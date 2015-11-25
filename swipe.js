@@ -25,6 +25,8 @@ function Swipe(game, model) {
   self.model = model !== undefined ? model : null;
   self.dragLength = 20;
   self.swiping = false;
+  self.direction = null;
+  self.diagonalDisabled = false;
 
   this.game.input.onDown.add(function () {
     self.swiping = true;
@@ -32,9 +34,36 @@ function Swipe(game, model) {
   this.game.input.onUp.add(function () {
     self.swiping = false;
   })
+
+  var up = this.game.input.keyboard.addKey(Phaser.Keyboard.UP);
+  up.onDown.add(function() {
+    self.direction = self.DIRECTION_UP;
+    self.model !== null && self.model.up && self.model.up();
+  })
+  var down = this.game.input.keyboard.addKey(Phaser.Keyboard.DOWN);
+  down.onDown.add(function() {
+    self.direction = self.DIRECTION_DOWN;
+    self.model !== null && self.model.down && self.model.down();
+  })
+  var left = this.game.input.keyboard.addKey(Phaser.Keyboard.LEFT);
+  left.onDown.add(function() {
+    self.direction = self.DIRECTION_LEFT;
+    self.model !== null && self.model.left && self.model.left();
+  })
+  var right = this.game.input.keyboard.addKey(Phaser.Keyboard.RIGHT);
+  right.onDown.add(function() {
+    self.direction = self.DIRECTION_RIGHT;
+    self.model !== null && self.model.right && self.model.right();
+  })
+
 }
 
 Swipe.prototype.check = function () {
+  if (this.direction!==null) {
+    var result = {x: 0, y: 0, direction: this.direction};
+    this.direction = null;
+    return result;
+  }
   if (!this.swiping) return null;
 
   if (Phaser.Point.distance(this.game.input.activePointer.position, this.game.input.activePointer.positionDown) < this.dragLength + 20) return null;
@@ -53,7 +82,7 @@ Swipe.prototype.check = function () {
   var deltaXabs = Math.abs(deltaX);
   var deltaYabs = Math.abs(deltaY);
 
-  if (deltaXabs > this.dragLength && deltaYabs > this.dragLength) {
+  if (!this.diagonalDisabled && deltaXabs > this.dragLength && deltaYabs > this.dragLength) {
     if (deltaX > 0 && deltaY > 0) {
       direction = this.DIRECTION_DOWN_RIGHT;
       this.model !== null && this.model.downRight && this.model.downRight(result);

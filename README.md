@@ -47,9 +47,9 @@ So if you do not want the diagonals, you can just omit those methods.
       left: function(point) {},
       right: function(point) {},
       upLeft: function(point) {},
-      upRight: fuction(point) {},
+      upRight: function(point) {},
       downLeft: function(point) {},
-      downRight: fuction(point) {}
+      downRight: function(point) {}
    };
    
    // in create

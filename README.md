@@ -65,3 +65,7 @@ So if you do not want the diagonals, you can just omit those methods.
 The module will automatically understand all arrow keys for understanding up/down/left/right. If you use
 the model, it will call the methods for you. If you do not use a model, you will get a direction from
 check(), but in both ways you will not get a point for where it was pressed.
+
+It understands the diagonals also, so pressing up and right will return DIRECTION_UP_RIGHT and call
+model.upRight() if it exists. Because two keys need to be pressed, the signal for a single key will not
+fire until it is released

@@ -1,6 +1,6 @@
 {
   "name": "phaser-swipe",
-  "version": "1.0.2",
+  "version": "1.0.4",
   "description": "A swipe component for Phaser.io",
   "main": "swipe.js",
   "scripts": {

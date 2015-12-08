@@ -23,7 +23,8 @@ function Swipe(game, model) {
 
   self.game = game;
   self.model = model !== undefined ? model : null;
-  self.dragLength = 20;
+  self.dragLength = 100;
+  self.diagonalDelta = 50;
   self.swiping = false;
   self.direction = null;
   self.tmpDirection = null;
@@ -159,7 +160,7 @@ Swipe.prototype.check = function () {
   }
   if (!this.swiping) return null;
 
-  if (Phaser.Point.distance(this.game.input.activePointer.position, this.game.input.activePointer.positionDown) < this.dragLength + 20) return null;
+  if (Phaser.Point.distance(this.game.input.activePointer.position, this.game.input.activePointer.positionDown) < this.dragLength) return null;
 
   this.swiping = false;
 
@@ -175,7 +176,7 @@ Swipe.prototype.check = function () {
   var deltaXabs = Math.abs(deltaX);
   var deltaYabs = Math.abs(deltaY);
 
-  if (!this.diagonalDisabled && deltaXabs > this.dragLength && deltaYabs > this.dragLength) {
+  if (!this.diagonalDisabled && deltaXabs > (this.dragLength-this.diagonalDelta) && deltaYabs > (this.dragLength-this.diagonalDelta)) {
     if (deltaX > 0 && deltaY > 0) {
       direction = this.DIRECTION_DOWN_RIGHT;
       this.model !== null && this.model.downRight && this.model.downRight(result);

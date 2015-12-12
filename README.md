@@ -12,7 +12,7 @@ You can grab the swipe.js file and include it in your project, or you can use np
 
 ## Usage
 
-You can use it in two ways. With or without a model. This is without model
+You can use it in two ways; with or without a model. This is without model.
 
 ```javascript
   var Swipe = require('phaser-swipe');
@@ -21,7 +21,7 @@ You can use it in two ways. With or without a model. This is without model
   this.swipe = new Swipe(this.game);
   
   // in update
-  var direciton = this.swipe.check();
+  var direction = this.swipe.check();
   if (direction!==null) {
     // direction= { x: x, y: y, direction: direction }
     switch(direction.direction) {
@@ -37,7 +37,7 @@ You can use it in two ways. With or without a model. This is without model
   }
 ```
 
-This is with a model. Here you define your methods in your model. Only those methods defined will be used
+This is with a model. Here you define your methods in your model. Only those methods defined will be used.
 So if you do not want the diagonals, you can just omit those methods.
 
 ```javascript
@@ -68,4 +68,4 @@ check(), but in both ways you will not get a point for where it was pressed.
 
 It understands the diagonals also, so pressing up and right will return DIRECTION_UP_RIGHT and call
 model.upRight() if it exists. Because two keys need to be pressed, the signal for a single key will not
-fire until it is released
+fire until it is released.
